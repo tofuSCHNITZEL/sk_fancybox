@@ -1,0 +1,11 @@
+# cat=plugin.sk_fancybox/enable; type=boolean; label=Don't include jQuery: This will prevent the extension from including the jQuery library. You can use your own inclusion method instead. t3jquery is automatically detected and does not require this to be set.
+dontIncludeJquery = 0
+
+# cat=plugin.sk_fancybox/enable; type=boolean; label=Disable fancybox.js: This will prevent the extension from including the jQuery FancyBox plugin. You can use your own inclusion method instead.
+dontIncludeFancyboxJs = 0
+
+# cat=plugin.sk_fancybox/enable; type=boolean; label=Include jQuery easing [optional]: This will include the jQuery easing plugin. Check if you wish to use fancy transitions as jQuery by default supports only swing and linear.
+includeJqueryEasing = 1
+
+# cat=plugin.sk_fancybox/enable; type=boolean; label=Include jQuery mousewheel [optional]: This will include jQuery mouse-wheel plugin for navigation between images.
+includeJqueryMousewheel = 1

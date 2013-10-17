@@ -1,0 +1,28 @@
+2011-03-20 Samuel Koch  <sam@koch.is>
+
+    * Added note to the manual concerning inclusion through "includeLib".
+
+2011-01-17 Samuel Koch  <sam@koch.is>
+
+    * Fixed the manual.
+
+2011-01-14 Samuel Koch  <sam@koch.is>
+
+    * Additional title position added.
+
+2011-01-13 Samuel Koch  <sam@koch.is>
+
+    * Added the manual.
+    * JS and CSS files are now only included if static template is included as well.
+
+2010-12-29 Samuel Koch  <sam@koch.is>
+
+    * Some small enhancements.
+
+2010-12-28 Samuel Koch  <sam@koch.is>
+
+    * Some enhancements.
+
+2010-12-28 Samuel Koch  <sam@koch.is>
+
+    * Initial release with FancyBox v. 1.3.4.

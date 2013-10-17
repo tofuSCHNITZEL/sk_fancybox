@@ -1,0 +1,92 @@
+plugin.sk_fancybox {
+
+    # cat=plugin.sk_fancybox//010; type=text; label=Padding:Space between FancyBox wrapper and content
+    padding = 10
+
+    # cat=plugin.sk_fancybox//020; type=text; label=Margin:Space between viewport and FancyBox wrapper
+    margin = 20
+
+    # cat=plugin.sk_fancybox//030; type=boolean; label=Opacity:When true, transparency of content is changed for elastic transitions
+    opacity = 0
+
+    # cat=plugin.sk_fancybox//040; type=boolean; label=Modal:When true, 'overlayShow' is set to 'true' and 'hideOnOverlayClick', 'hideOnContentClick', 'enableEscapeButton', 'showCloseButton' are set to 'false'
+    modal = 0
+
+    # cat=plugin.sk_fancybox//050; type=boolean; label=Cyclic:When true, galleries will be cyclic, allowing you to keep pressing next/back.
+    cyclic = 0
+
+    # cat=plugin.sk_fancybox//060; type=text; label=Scrolling:Set the overflow CSS property to create or hide scrollbars. Can be set to 'auto', 'yes', or 'no'
+    scrolling = auto
+
+    # cat=plugin.sk_fancybox//070; type=boolean; label=AutoScale:If true, FancyBox is scaled to fit in viewport
+    autoScale = 1
+
+    # cat=plugin.sk_fancybox//080; type=boolean; label=AutoDimensions:For inline and ajax views, resizes the view to the element recieves. Make sure it has dimensions otherwise this will give unexpected results
+    autoDimensions = 1
+
+    # cat=plugin.sk_fancybox//090; type=boolean; label=CenterOnScroll:When true, FancyBox is centered while scrolling page
+    centerOnScroll = 1
+
+    # cat=plugin.sk_fancybox//100; type=boolean; label=HideOnOverlayClick:Toggle if clicking the overlay should close FancyBox
+    hideOnOverlayClick = 1
+
+    # cat=plugin.sk_fancybox//110; type=boolean; label=HideOnContentClick:Toggle if clicking the content should close FancyBox
+    hideOnContentClick = 1
+
+    # cat=plugin.sk_fancybox//120; type=boolean; label=OverlayShow:Toggle overlay
+    overlayShow = 1
+
+    # cat=plugin.sk_fancybox//130; type=text; label=OverlayOpacity:Opacity of the overlay (from 0 to 1, default 0.3)
+    overlayOpacity = 0.3
+
+    # cat=plugin.sk_fancybox//140; type=text; label=OverlayColor:Color of the overlay
+    overlayColor = #666
+
+    # cat=plugin.sk_fancybox//150; type=boolean; label=TitleShow:Toggle title
+    titleShow = 1
+
+    # cat=plugin.sk_fancybox//160; type=options[over,inside,outside-bar,outside]; label=TitlePosition:The position of title.
+    titlePosition = over
+
+    # cat=plugin.sk_fancybox//170; type=text; label=TitleFormat:Callback to customize title area. You can set any html - custom image counter or even custom navigation
+    titleFormat = null
+
+    # cat=plugin.sk_fancybox//180; type=options[fade,elastic,none]; label=TransitionIn:The transition type.
+    transitionIn = fade
+
+    # cat=plugin.sk_fancybox//190; type=options[fade,elastic,none]; label=TransitionOut:The transition type.
+    transitionOut = fade
+
+    # cat=plugin.sk_fancybox//200; type=text; label=SpeedIn:Speed of the fade and elastic transitions, in milliseconds
+    speedIn = 300
+
+    # cat=plugin.sk_fancybox//210; type=text; label=SpeedOut:Speed of the fade and elastic transitions, in milliseconds
+    speedOut = 300
+
+    # cat=plugin.sk_fancybox//220; type=text; label=ChangeSpeed:Speed of the fade and elastic transitions, in milliseconds
+    changeSpeed = 300
+
+    # cat=plugin.sk_fancybox//230; type=text; label=ChangeFade:Speed of the content fading while changing gallery items
+    changeFade = fast
+
+    # cat=plugin.sk_fancybox//240; type=text; label=EasingIn:Easing used for elastic animations
+    easingIn = swing
+
+    # cat=plugin.sk_fancybox//250; type=text; label=EasingOut:Easing used for elastic animations
+    easingOut = swing
+
+    # cat=plugin.sk_fancybox//260; type=boolean; label=ShowCloseButton:Toggle close button
+    showCloseButton = 1
+
+    # cat=plugin.sk_fancybox//270; type=boolean; label=ShowNavArrows:Toggle navigation arrows
+    showNavArrows = 1
+
+    # cat=plugin.sk_fancybox//280; type=boolean; label=EnableEscapeButton:Toggle if pressing Esc button closes FancyBox
+    enableEscapeButton = 1
+
+    # cat=plugin.sk_fancybox//290; type=text; label=maxW:Set max. image width in pixels for lightbox mode (in order to scale down large images)
+    maxW = 1000
+
+    # cat=plugin.sk_fancybox//300; type=text; label=maxH:Set max. image height in pixels for lightbox mode (in order to scale down large images)
+    maxH = 1000
+}
