@@ -1,11 +1,23 @@
-# cat=plugin.sk_fancybox/enable; type=boolean; label=Don't include jQuery: This will prevent the extension from including the jQuery library. You can use your own inclusion method instead. t3jquery is automatically detected and does not require this to be set.
+# cat=plugin.tp_fancybox2/enable; type=boolean; label=Don't include jQuery: This will prevent the extension from including the jQuery library. You can use your own inclusion method instead. t3jquery is automatically detected and does not require this to be set.
 dontIncludeJquery = 0
 
-# cat=plugin.sk_fancybox/enable; type=boolean; label=Disable fancybox.js: This will prevent the extension from including the jQuery FancyBox plugin. You can use your own inclusion method instead.
+# cat=plugin.tp_fancybox2/enable; type=boolean; label=Disable fancybox.js: This will prevent the extension from including the jQuery FancyBox plugin. You can use your own inclusion method instead.
 dontIncludeFancyboxJs = 0
 
-# cat=plugin.sk_fancybox/enable; type=boolean; label=Include jQuery easing [optional]: This will include the jQuery easing plugin. Check if you wish to use fancy transitions as jQuery by default supports only swing and linear.
-includeJqueryEasing = 1
+# cat=plugin.tp_fancybox2/enable; type=boolean; label=Don't include the inline JS Fancybox2 call. You have to add your own fancybox2 call in your JS files.
+dontIncludeFancyBox2Call = 0
 
-# cat=plugin.sk_fancybox/enable; type=boolean; label=Include jQuery mousewheel [optional]: This will include jQuery mouse-wheel plugin for navigation between images.
-includeJqueryMousewheel = 1
+# cat=plugin.tp_fancybox2/enable; type=boolean; label=Include jQuery easing [optional]: This will include the jQuery easing plugin. Check if you wish to use fancy transitions as jQuery by default supports only swing and linear.
+includeJqueryEasing = 0
+
+# cat=plugin.tp_fancybox2/enable; type=boolean; label=Include jQuery mousewheel [optional]: This will include jQuery mouse-wheel plugin for navigation between images by using the mousewheel.
+includeJqueryMousewheel = 0
+
+# cat=plugin.tp_fancybox2/enable; type=boolean; label=Include fancybox2 thumbnail helper [optional]. This will enable fancybox to display thumbnails under the current picture when displaying grouped images.
+includeThumbnailHelper = 0
+
+# cat=plugin.tp_fancybox2/enable; type=boolean; label=Include fancybox2 media helper [optional]. This will enable fancybox to automatically display media from different Services like YouTube, Vimeo, Metacafe, Dailymotion, Twitvid, Twitpic, Instagram, Google maps.
+includeMediaHelper = 0
+
+# cat=plugin.tp_fancybox2/enable; type=boolean; label=Include fancybox2 button helper [optional]. This will enable fancybox to display buttons (above) the image for play/pause/next/prev/fullscreen etc.
+includeButtonHelper = 0

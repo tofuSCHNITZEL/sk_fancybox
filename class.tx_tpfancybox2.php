@@ -31,16 +31,16 @@
 
 
     /**
-    * Plugin 'FancyBox' for the 'sk_fancybox' extension.
+    * Plugin 'FancyBox2' for the 'tp_fancybox2' extension.
     *
-    * @author    Samuel Koch <sam@koch.is>
+    * @author    Tobias Perschon <tofu@perschon.at> original by Samuel Koch <sam@koch.is>
     * @package    TYPO3
-    * @subpackage    tx_skfancybox
+    * @subpackage    tx_tpfancybox2
     */
-    class tx_skfancybox extends tslib_pibase {
-        var $prefixId      = 'tx_skfancybox';        // Same as class name
-        var $scriptRelPath = 'class.tx_skfancybox.php';    // Path to this script relative to the extension dir.
-        var $extKey        = 'sk_fancybox';    // The extension key.
+    class tx_tpfancybox2 extends tslib_pibase {
+        var $prefixId      = 'tx_tpfancybox2';        // Same as class name
+        var $scriptRelPath = 'class.tx_tpfancybox2.php';    // Path to this script relative to the extension dir.
+        var $extKey        = 'tp_fancybox2';    // The extension key.
         var $pi_checkCHash = true;
         var $extPath;
 
@@ -63,7 +63,7 @@
             $this->extPath = t3lib_extMgm::siteRelPath($this->extKey);
 
             //get extconf values
-            $extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['sk_fancybox']);
+            $extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tp_fancybox2']);
 
             //check whether to include jQuery library
             if (!$extConf['dontIncludeJquery']) {
@@ -77,27 +77,45 @@
                 }
                 //otherwise include jQuery file
                 else {
-                    $addJsFiles[] = $this->extPath.'fancybox/jquery-1.4.4.min.js';
+                    $addJsFiles[] = $this->extPath.'fancybox2/jquery-1.10.2.min.js';
                 }
             }
 
             //check whether to include jQuery easing
             if ($extConf['includeJqueryEasing']) {
-                $addJsFiles[] = $this->extPath.'fancybox/jquery.easing-1.3.pack.js';
+                $addJsFiles[] = $this->extPath.'fancybox2/jquery.easing.1.3.pack.js';
             }
             //check whether to include jQuery mousewheel
             if ($extConf['includeJqueryMousewheel']) {
-                $addJsFiles[] = $this->extPath.'fancybox/jquery.mousewheel-3.0.4.pack.js';
+                $addJsFiles[] = $this->extPath.'fancybox2/jquery.mousewheel.3.1.3.pack.js';
             }
 
             //check whether to include the FancyBox library
             if (!$extConf['dontIncludeFancyboxJs']) {
-                $addJsFiles[] = $this->extPath.'fancybox/jquery.fancybox-1.3.4.pack.js';
+                $addJsFiles[] = $this->extPath.'fancybox2/jquery.fancybox.pack.js';
             }
 
             //check whether to include the FancyBox stylesheet
             if (strlen($this->conf['stylesheetPath']) > 0) {
                 $addCssFiles[] = $this->conf['stylesheetPath'];
+            }
+			
+			//fancybox2 helpers
+			//check whether to include the thumbnail helper
+            if (!$extConf['includeThumbnailHelper']) {
+                $addJsFiles[] = $this->extPath.'fancybox2/helpers/jquery.fancybox-thumbs.js';
+				$addCssFiles[] = $this->extPath.'fancybox2/helpers/jquery.fancybox-thumbs.css';
+            }
+			
+			//check whether to include the media helper
+			if (!$extConf['includeMediaHelper']) {
+                $addJsFiles[] = $this->extPath.'fancybox2/helpers/jquery.fancybox-media.js';
+            }
+			
+			//check whether to include the button helper
+			if (!$extConf['includeButtonHelper']) {
+                $addJsFiles[] = $this->extPath.'fancybox2/helpers/jquery.fancybox-buttons.js';
+				$addCssFiles[] = $this->extPath.'fancybox2/helpers/jquery.fancybox-buttons.css';
             }
 
             //check TYPO3 version to see whether pagerenderer is available
@@ -126,7 +144,7 @@
                     $headerParts .= '<script type="text/javascript" src="'.$jsFile.'"></script>';
                 }
                 foreach($addCssFiles as $CssFile) {
-                    $headerParts .= '<link rel="stylesheet" href="'.$CssFile.'" type="text/css" />';
+                    $headerParts .= '<link rel="stylesheet" href="'.$CssFile.'" type="text/css" media="screen"/>';
                 }
                 $GLOBALS['TSFE']->additionalHeaderData['EXT:' . $this->extKey] = $headerParts;
             }
@@ -152,43 +170,50 @@
             }
 
             //set FancyBox options
-            $GLOBALS['TSFE']->inlineJS['sk_fancybox'] = '
-            jQuery(document).ready(function() {
-
-            jQuery(".fancybox").fancybox({
-            "padding": '.$this->conf['padding'].',
-            "margin": '.$this->conf['margin'].',
-            "opacity": '.($this->conf['opacity'] ? 'true' : 'false').',
-            "modal": '.($this->conf['modal'] ? 'true' : 'false').',
-            "cyclic": '.($this->conf['cyclic'] ? 'true' : 'false').',
-            "scrolling": "'.$this->conf['scrolling'].'",
-            "autoScale": '.($this->conf['autoScale'] ? 'true' : 'false').',
-            "autoDimensions": '.($this->conf['autoDimensions'] ? 'true' : 'false').',
-            "centerOnScroll": '.($this->conf['centerOnScroll'] ? 'true' : 'false').',
-            "hideOnOverlayClick": '.($this->conf['hideOnOverlayClick'] ? 'true' : 'false').',
-            "hideOnContentClick": '.($this->conf['hideOnContentClick'] ? 'true' : 'false').',
-            "overlayShow": '.($this->conf['overlayShow'] ? 'true' : 'false').',
-            "overlayOpacity": '.$this->conf['overlayOpacity'].',
-            "overlayColor": "'.$this->conf['overlayColor'].'",
-            "titleShow": '.($this->conf['titleShow'] ? 'true' : 'false').',
-            '.($this->conf['titlePosition'] != 'outside-bar' ? '"titlePosition": "'.$this->conf['titlePosition'].'",' : '').'
-            "titleFormat": '.$this->conf['titleFormat'].',
-            "transitionIn": "'.$this->conf['transitionIn'].'",
-            "transitionOut": "'.$this->conf['transitionOut'].'",
-            "speedIn": '.$this->conf['speedIn'].',
-            "speedOut": '.$this->conf['speedOut'].',
-            "changeSpeed": '.$this->conf['changeSpeed'].',
-            "changeFade": "'.$this->conf['changeFade'].'",
-            "easingIn": "'.$this->conf['easingIn'].'",
-            "easingOut": "'.$this->conf['easingOut'].'",
-            "showCloseButton": '.($this->conf['showCloseButton'] ? 'true' : 'false').',
-            "showNavArrows": '.($this->conf['showNavArrows'] ? 'true' : 'false').',
-            "enableEscapeButton": '.($this->conf['enableEscapeButton'] ? 'true' : 'false').',
-            "titleFormat": '.$titleFormat.'
-            });
-
-            });';
+			if (!$extConf['dontIncludeFancyBox2Call']) {
+				$GLOBALS['TSFE']->inlineJS['tp_fancybox2'] = '
+				jQuery(document).ready(function() {
+	
+				jQuery(".fancybox").fancybox({
+				"padding": '.$this->conf['padding'].',
+				"margin": '.$this->conf['margin'].',
+				"width": '.$this->conf['width'].',
+				"height": '.$this->conf['height'].',
+				"minWidth": '.$this->conf['minWidth'].',
+				"minHeight": '.$this->conf['minHeight'].',
+				"maxWidth": '.$this->conf['maxWidth'].',
+				"maxHeight": '.$this->conf['maxHeight'].',
+				"autoSize": '.($this->conf['autoSize'] ? 'true' : 'false').',
+				"loop": '.($this->conf['loop'] ? 'true' : 'false').',
+				"scrolling": "'.$this->conf['scrolling'].'",
+				"autoDimensions": '.($this->conf['autoDimensions'] ? 'true' : 'false').',
+				"centerOnScroll": '.($this->conf['centerOnScroll'] ? 'true' : 'false').',
+				"hideOnOverlayClick": '.($this->conf['hideOnOverlayClick'] ? 'true' : 'false').',
+				"hideOnContentClick": '.($this->conf['hideOnContentClick'] ? 'true' : 'false').',
+				"overlayShow": '.($this->conf['overlayShow'] ? 'true' : 'false').',
+				"overlayOpacity": '.$this->conf['overlayOpacity'].',
+				"overlayColor": "'.$this->conf['overlayColor'].'",
+				"titleShow": '.($this->conf['titleShow'] ? 'true' : 'false').',
+				'.($this->conf['titlePosition'] != 'outside-bar' ? '"titlePosition": "'.$this->conf['titlePosition'].'",' : '').'
+				"titleFormat": '.$this->conf['titleFormat'].',
+				"transitionIn": "'.$this->conf['transitionIn'].'",
+				"transitionOut": "'.$this->conf['transitionOut'].'",
+				"speedIn": '.$this->conf['speedIn'].',
+				"speedOut": '.$this->conf['speedOut'].',
+				"changeSpeed": '.$this->conf['changeSpeed'].',
+				"changeFade": "'.$this->conf['changeFade'].'",
+				"easingIn": "'.$this->conf['easingIn'].'",
+				"easingOut": "'.$this->conf['easingOut'].'",
+				"showCloseButton": '.($this->conf['showCloseButton'] ? 'true' : 'false').',
+				"showNavArrows": '.($this->conf['showNavArrows'] ? 'true' : 'false').',
+				"enableEscapeButton": '.($this->conf['enableEscapeButton'] ? 'true' : 'false').',
+				"titleFormat": '.$titleFormat.'
+				});
+	
+				});';
+			}
         }
+		
 
 
         /**
@@ -289,8 +314,8 @@
 
 
 
-    if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/sk_fancybox/class.tx_skfancybox.php'])    {
-        include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/sk_fancybox/class.tx_skfancybox.php']);
+    if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/tp_fancybox2/class.tx_tpfancybox2.php'])    {
+        include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/tp_fancybox2/class.tx_tpfancybox2.php']);
     }
 
 ?>
